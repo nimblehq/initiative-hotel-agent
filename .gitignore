@@ -4,16 +4,22 @@
 /.idea
 /coverage/
 /InstalledFiles
-/node_modules
+node_modules/
+.next/
+out/
 /pkg/
 /spec/reports/
 /spec/examples.txt
 /test/tmp/
 /test/version_tmp/
 /tmp/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
 # Used by dotenv library to load environment variables.
-# .env
+.env
 
 ## Documentation cache and generated files:
 /.yardoc/
@@ -34,3 +40,6 @@
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
+
+*.tsbuildinfo
+next-env.d.ts
