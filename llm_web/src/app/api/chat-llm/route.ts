@@ -1,4 +1,5 @@
-import { findCheapestHotel } from "../../../api/chat-llm/workflow";
+import { findCheapestHotel } from "@/api/chat-llm/workflow";
+import { ChatMessage, WorkflowState } from "@/api/chat-llm/types";
 
 const NEWLINE = "$NEWLINE$";
 const DEFAULT_QUERY = "Find me a cheap hotel for tonight";
@@ -18,30 +19,47 @@ export const OPTIONS = async () => {
 };
 
 export const POST = async (request: Request) => {
-  let responseStream = new TransformStream();
+  const responseStream = new TransformStream();
   const writer = responseStream.writable.getWriter();
   const encoder = new TextEncoder();
 
   try {
     const body = await request.json();
     const userQuery = body.query || DEFAULT_QUERY;
+    const conversationHistory: ChatMessage[] = body.conversationHistory || [];
 
     // Start the workflow execution
     (async () => {
       try {
         await writer.write(
+          encoder.encode(`event: token\ndata: ${NEWLINE}${NEWLINE}\n\n`)
+        );
+
+        const result: WorkflowState = await findCheapestHotel(userQuery, conversationHistory);
+
+        // Send conversation history as metadata
+        await writer.write(
           encoder.encode(
-            `event: token\ndata: 🔍 Processing your hotel search request...${NEWLINE}${NEWLINE}\n\n`
+            `event: conversation\ndata: ${JSON.stringify(
+              result.conversationHistory
+            )}\n\n`
           )
         );
 
-        const result = await findCheapestHotel(userQuery);
+        // Send workflow state as metadata
+        await writer.write(
+          encoder.encode(
+            `event: state\ndata: ${JSON.stringify({
+              needsUserInput: result.needsUserInput,
+              conversationComplete: result.conversationComplete,
+              hasResults: !!result.cheapestOption,
+            })}\n\n`
+          )
+        );
 
         if (result.error) {
           await writer.write(
-            encoder.encode(
-              `event: token\ndata: ❌ Error: ${result.error}${NEWLINE}\n\n`
-            )
+            encoder.encode(`event: token\ndata: ${result.error}${NEWLINE}\n\n`)
           );
         } else {
           // Stream the analysis
