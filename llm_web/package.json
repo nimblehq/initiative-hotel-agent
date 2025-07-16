@@ -10,9 +10,16 @@
   },
   "dependencies": {
     "@google/genai": "^1.9.0",
+    "@llm-ui/code": "^0.13.3",
+    "@llm-ui/markdown": "^0.13.3",
+    "@llm-ui/react": "^0.13.3",
+    "html-react-parser": "^5.2.5",
     "next": "15.3.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "shiki": "^3.8.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
