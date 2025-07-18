@@ -210,6 +210,7 @@
 
 /* Dark Mode Adjustments */
 @media (prefers-color-scheme: dark) {
+
   .markdown-h1,
   .markdown-h2 {
     border-bottom-color: #30363d;
@@ -317,7 +318,8 @@
   from {
     transform: translateY(10px);
   }
+
   to {
     transform: translateY(0);
   }
-} 
+}

@@ -75,7 +75,7 @@ export const POST = async (request: Request) => {
                 )
               );
               // Small delay for better streaming effect
-              await new Promise((resolve) => setTimeout(resolve, 100));
+              await new Promise((resolve) => setTimeout(resolve, 30));
             }
           }
 
