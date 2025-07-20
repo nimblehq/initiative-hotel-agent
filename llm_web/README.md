@@ -1,13 +1,11 @@
 # Hotel LLM - AI-Powered Hotel Price Comparison
 
-This is an intelligent hotel booking assistant built with [Next.js](https://nextjs.org) and [LangGraph](https://js.langchain.com/docs/langgraph). The application uses AI to search across platform and find the cheapest options for your travel needs.
+This is an intelligent hotel booking assistant built with [Next.js](https://nextjs.org), [Flutter](https://flutter.dev), and [LangGraph](https://js.langchain.com/docs/langgraph). The application uses AI to search over platform and find the cheapest options for your travel needs.
 
 ## 🏨 Features
 
 - **Smart Hotel Search**: Natural language hotel search queries (e.g., "Find a cheap hotel in Paris for next weekend")
-- **Multi-Platform Comparison**: Searches across multiple hotel booking platforms (Booking.com, Expedia, Hotels.com)
 - **LangGraph Workflow**: Advanced AI workflow with StateGraph, conditional routing, and state management
-- **Conversation Memory**: Maintains context across multiple queries for follow-up questions
 - **Real-time Streaming**: Stream search results and analysis in real-time
 - **Cheapest Option Recommendation**: Automatically finds and recommends the most affordable option
 - **Quick Search Buttons**: Pre-configured search options for popular destinations
@@ -20,9 +18,8 @@ The application uses LangGraph's StateGraph for sophisticated AI workflow orches
 
 1. **Query Parsing**: AI intelligently parses natural language queries and maintains conversation context
 2. **Conditional Routing**: LangGraph's conditional edges route workflow based on state conditions
-3. **Multi-Platform Search**: Parallel searches across hotel providers for comprehensive coverage
-4. **Price Analysis**: Advanced comparison algorithm with detailed LLM-powered recommendations
-5. **State Management**: LangGraph's annotation-based state with automatic merging and validation
+3. **Price Analysis**: Advanced comparison algorithm with detailed LLM-powered recommendations
+4. **State Management**: LangGraph's annotation-based state with automatic merging and validation
 
 ### LangGraph Workflow Architecture
 
@@ -52,6 +49,8 @@ This project uses:
 
 ### 1. Install Dependencies
 
+### 1.1. Web
+
 First, ensure you have the correct Node.js version installed:
 
 ```bash
@@ -67,8 +66,15 @@ Install dependencies:
 pnpm install
 ```
 
+### 1.2. Mobile
+
+First, ensure you have the correct Flutter version installed:
+
+// TODO: @nkhanh44 please help to fill the details for mobile app
+
 ### 2. Environment Setup
 
+### 2.1. Web
 Create a `.env.local` file in the root directory and add your API keys:
 
 ```bash
@@ -77,13 +83,24 @@ Create a `.env.local` file in the root directory and add your API keys:
 GEMINI_API_KEY=your_gemini_api_key_here
 ```
 
+### 2.2. Mobile
+
+
+
 ### 3. Run the Development Server
 
+#### 3.1. Web
 ```bash
 pnpm dev
 ```
 
 Open [http://localhost:3000/llm](http://localhost:3000/llm) with your browser to access the hotel search interface.
+
+#### 3.2. Mobile
+
+```bash
+flutter run
+```
 
 ## 💡 Usage Examples
 
@@ -149,12 +166,9 @@ const GraphState = Annotation.Root({
 - **Frontend**: Next.js 15, React 19, TypeScript
 - **AI/LLM**: Google Gemini 2.0 Flash, LangChain Core
 - **Workflow Engine**: LangGraph StateGraph with Annotation-based state
-- **UI Components**: Custom React components with hooks
-- **Styling**: CSS Modules with modern gradients and animations
+- **UI Components**: LLM-powered UI with React Markdown and syntax highlighting
 - **Code Highlighting**: Shiki for syntax highlighting
 - **Markdown**: React Markdown with GFM support
-- **API Integration**: Axios for HTTP requests
-- **Date Handling**: date-fns for date operations
 - **Streaming**: Server-Sent Events for real-time updates
 
 ### Customizing the LangGraph Workflow
@@ -208,14 +222,27 @@ const ExtendedGraphState = Annotation.Root({
 - **Styling**: CSS modules allow easy theming and customization
 - **Quick Actions**: Modify `src/app/llm/constants.ts` for different quick search options
 
-## 🔄 Opportunities
+## 🌟 Growth Opportunities
 
-- We manage the LangGraph Engine and everything by our own, so the potential is huge. We can integrate
-  - API integration - For hotel search matcher and internal price comparison or commission/ads, etc
-  - Agent integration - Explore the potential of agents to improve the workflow, i.e., fetching data from other platforms for multi-purposes
-  - Unlimited LLMs integration - We can use any LLM, not just Gemini
-  - Vector database integration - We can use any vector database for optimization and faster retrieval
-  - And many more...
+The self-managed LangGraph architecture opens numerous expansion possibilities:
+
+### Platform Integration
+- **API Partnerships**: Direct integration with hotel booking APIs for real-time/cached pricing
+- **Commission Systems**: Revenue optimization through booking partnerships
+- **Advertising Integration**: Sponsored hotel recommendations and placements
+
+### AI & Agent Enhancement
+- **Multi-Agent Systems**: Specialized agents for different aspects (pricing, amenities, reviews)
+- **Advanced LLM Integration**: Support for multiple AI providers and model switching
+- **Predictive Analytics**: Price trend analysis and optimal booking time recommendations
+
+### Data & Performance
+- **Vector Database Integration**: Enhanced search capabilities with semantic similarity
+- **Caching Layers**: Redis integration for improved response times
+- **Analytics Dashboard**: Comprehensive search and booking analytics
+
+### User Experience
+- **Personalization Engine**: Machine learning-powered user preference learning
 
 ## 🚀 Deployment
 
@@ -249,9 +276,6 @@ LangGraph's state management maintains context across queries, allowing for natu
 ### Smart Query Parsing
 Advanced AI parsing with LangGraph's conditional edges that handle ambiguous queries and request clarification.
 
-### Multi-Provider Search
-Parallel searches across multiple hotel booking platforms with LangGraph node orchestration.
-
 ### Conditional Workflow Routing
 LangGraph's conditional edges adapt the workflow based on query complexity and results.
 
@@ -263,6 +287,7 @@ LangGraph's conditional edges adapt the workflow based on query complexity and r
 - [Google Gemini API](https://ai.google.dev/)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [React 19 Features](https://react.dev/blog/2024/04/25/react-19)
+- [Flutter Documentation](https://docs.flutter.dev/)
 
 ### Development Guidelines
 - Follow TypeScript best practices
