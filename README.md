@@ -70,7 +70,17 @@ pnpm install
 
 First, ensure you have the correct Flutter version installed:
 
-// TODO: @nkhanh44 please help to fill the details for mobile app
+```bash
+# Install Flutter (if not already installed)
+# See: https://docs.flutter.dev/get-started/install
+flutter --version
+```
+
+Install dependencies:
+
+```bash
+flutter pub get
+```
 
 ### 2. Environment Setup
 
@@ -85,7 +95,11 @@ GEMINI_API_KEY=your_gemini_api_key_here
 
 ### 2.2. Mobile
 
+Create a `.env` or similar environment file in your Flutter project:
 
+# Google Gemini API Key (if required by mobile app)
+GEMINI_API_KEY=your_gemini_api_key_here
+```
 
 ### 3. Run the Development Server
 
@@ -101,6 +115,8 @@ Open [http://localhost:3000/llm](http://localhost:3000/llm) with your browser to
 ```bash
 flutter run
 ```
+
+This will launch the mobile app on your connected device or emulator.
 
 ## 💡 Usage Examples
 
@@ -170,6 +186,78 @@ const GraphState = Annotation.Root({
 - **Code Highlighting**: Shiki for syntax highlighting
 - **Markdown**: React Markdown with GFM support
 - **Streaming**: Server-Sent Events for real-time updates
+
+---
+
+## 📱 Mobile App (Flutter)
+
+The mobile client is a Flutter app located in the `llm-flutter` directory. It provides a modern chat interface for hotel price search, powered by the same AI backend as the web app.
+
+### Features
+
+- Conversational hotel search with context-aware follow-ups
+- Real-time streaming of results using Server-Sent Events (SSE)
+- Modern chat UI (using `flutter_chat_ui`)
+- Markdown and code block rendering in chat
+- Quick search suggestions
+
+### Getting Started
+
+1. **Install Flutter**  
+   Follow the [Flutter install guide](https://docs.flutter.dev/get-started/install) and ensure you have Flutter 3.5.3+:
+   ```bash
+   flutter --version
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Configure API Endpoint**  
+   The app communicates with the backend at:
+   ```
+   https://initiative-hotel-agent.vercel.app/api/chat-llm
+   ```
+   If you deploy your own backend, update the `apiUrl` in `lib/chat_api_service.dart`.
+
+4. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+### Project Structure
+
+- `lib/main.dart` – App entry point, sets up theming and home screen
+- `lib/chat_screen.dart` – Main chat UI and logic
+- `lib/chat_api_service.dart` – Handles communication with the backend API (SSE streaming)
+- `lib/chat_view_model.dart` – Manages chat state and message flow
+
+### API Integration
+
+- Uses HTTP POST and SSE to stream AI responses from the backend.
+- No API key is required on the mobile client; the backend handles Gemini API access.
+
+### Dependencies
+
+Key packages:
+- `flutter_chat_ui` – Chat interface
+- `flutter_client_sse` – Server-Sent Events for real-time streaming
+- `http` – HTTP requests
+- `flutter_markdown` – Markdown rendering
+
+See `llm-flutter/pubspec.yaml` for the full list.
+
+### Customization
+
+- To change the backend endpoint, edit `apiUrl` in `lib/chat_api_service.dart`.
+- To add features or UI tweaks, modify `lib/chat_screen.dart` and `lib/chat_view_model.dart`.
+
+### Resources
+
+- [Flutter documentation](https://docs.flutter.dev/)
+- [flutter_chat_ui](https://pub.dev/packages/flutter_chat_ui)
+- [flutter_client_sse](https://pub.dev/packages/flutter_client_sse)
 
 ### Customizing the LangGraph Workflow
 
